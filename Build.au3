@@ -16,7 +16,14 @@ DirCreate($dist)
 DirCopy ($workingDir & '\lib', $dist & '\lib')
 DirCopy ($workingDir & '\www', $dist & '\www')
 
+FileCopy($workingDir & '\404.html', $dist & '\www\404.html')
+
 ConsoleWrite(' Publish Dll => ' & $dist & @CRLF)
+
+;~ 修改关于的路径
+$file = FileRead($dist & '\www\index.html')
+$str = StringRegExpReplace($file, 'mayswind/AriaNg', 'topcss/Aria2Downloader')
+FileWrite(FileOpen($dist & '\www\index.html', 1), $str)
 
 ;~ 编译程序
 _RunDOS($runPath & " /in ./src/Main.au3 /out ./dist/Aria2Downloader.exe  /icon ./www/favicon.ico")
