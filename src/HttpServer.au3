@@ -2,7 +2,7 @@ Func GetArgs()
     ; // OPTIONS HERE //
     Local $sRootDir = @ScriptDir & "\www" ; The absolute path to the root directory of the server.
     Local $sIP = @IPAddress1 ; ip address as defined by AutoIt
-    Local $iPort = 8086 ; the listening port
+    Local $iPort = 1707 ; the listening port
     Local $sServerAddress = "http://" & $sIP & ":" & $iPort & "/"
     Local $iMaxUsers = 15 ; Maximum number of users who can simultaneously get/post
     Local $sServerName = "ManadarX/1.1 (" & @OSVersion & ") AutoIt " & @AutoItVersion
@@ -42,15 +42,13 @@ Func HttpServer()
     Local $aSocket = GetArgs()[6]
     Local $sBuffer = GetArgs()[7]
 
-
     TCPStartup() ; AutoIt needs to initialize the TCP functions
 
     $iMainSocket = TCPListen($sIP,$iPort) ;create main listening socket
     If @error Then ; if you fail creating a socket, exit the application
-        MsgBox(0x20, "AutoIt Webserver", "Unable to create a socket on port " & $iPort & ".") ; notifies the user that the HTTP server will not run
+        ConsoleWrite("AutoIt Webserver：" & "Unable to create a socket on port " & $iPort & ".") ; notifies the user that the HTTP server will not run
         Exit ; if your server is part of a GUI that has nothing to do with the server, you'll need to remove the Exit keyword and notify the user that the HTTP server will not work.
     EndIf
-
 
     ConsoleWrite( "Server created on " & $sServerAddress & @CRLF) ; If you're in SciTE,
 
@@ -95,7 +93,7 @@ Func HttpServer()
                             If FileExists($sRootDir & "\" & $sRequest) Then ; makes sure the file that the user wants exists
                                 $sFileType = StringRight($sRequest,4) ; determines the file type, so that we may choose what mine type to use
                                 Switch $sFileType
-                                    Case "html", ".htm" ; in case of normal HTML files
+                                    Case "html", ".htm", '.manifest' ; in case of normal HTML files
                                         _HTTP_SendFile($aSocket[$x], $sRootDir & $sRequest, "text/html")
                                     Case ".css" ; in case of style sheets
                                         _HTTP_SendFile($aSocket[$x], $sRootDir & $sRequest, "text/css")
@@ -103,6 +101,12 @@ Func HttpServer()
                                         _HTTP_SendFile($aSocket[$x], $sRootDir & $sRequest, "image/jpeg")
                                     Case ".png" ; another common image format
                                         _HTTP_SendFile($aSocket[$x], $sRootDir & $sRequest, "image/png")
+
+                                    Case ".woff", ".woff2"
+                                        _HTTP_SendFile($aSocket[$x], $sRootDir & $sRequest, "application/x-font-woff")
+                                    Case ".ttf"
+                                        _HTTP_SendFile($aSocket[$x], $sRootDir & $sRequest, "application/x-font-ttf")
+
                                     Case Else ; this is for .exe, .zip, or anything else that is not supported is downloaded to the client using a application/octet-stream
                                         _HTTP_SendFile($aSocket[$x], $sRootDir & $sRequest, "application/octet-stream")
                                 EndSwitch
