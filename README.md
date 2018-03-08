@@ -1,9 +1,9 @@
-# Aria2Downloader 高速下载
+# Aria2Downloader 高速下载工具
 Aria2Downloader 是一个轻量级多协议和多源下载实用工具。它支持 HTTP / HTTPS, FTP, SFTP, bt 和 Metalink。
 
 ## 如何下载
-- 方法1：通过 百度云下载
-- 方法2：通过 Github 的 Releases 下载
+- 方法1：通过 [**百度云下载**](https://pan.baidu.com/s/1D3RcyCluLtzY36LDPIZiHw)
+- 方法2：通过 [**Github 的 Releases 下载**](https://github.com/topcss/Aria2Downloader/releases)
 
 ## 功能特征
 - 开箱即用，免安装，不需要敲命令行和打开其他网站
@@ -14,13 +14,13 @@ Aria2Downloader 是一个轻量级多协议和多源下载实用工具。它支�
 
 ![Windows](screenshot/Windows.png)
 
-## 开发文档
+## 相关文档
 - [依赖软件](./doc/credits.md)
 - [开发文档](./doc/dev.md)
-
+- [历史版本](./doc/history.md)
 
 ## 许可证信息
 
 Aria2Downloader 的诞生离不开 Aria2c 开源项目以及其他[开源软件](./doc/credits.md)。
 
-Code released under the GPL-2.0 License.
+Code released under the MIT License.

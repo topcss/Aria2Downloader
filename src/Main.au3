@@ -19,7 +19,7 @@ If ProcessExists('aria2.exe') == 0 AND FileExists($sAria2path) Then
 EndIf
 
 ; 定义界面
-$GUIMain = GUICreate("Aria2Downloader 高速下载", 860, 600)
+$GUIMain = GUICreate("Aria2Downloader 高速下载工具", 860, 600)
 GUISetIcon("favicon.ico", 0);设置窗口图标
 
 $oIE = ObjCreate("Shell.Explorer.2")
@@ -27,7 +27,7 @@ GUICtrlCreateObj($oIE, 0, 0, 860, 600)
 
 $oIE.navigate($sURL)
 
-Sleep(500)
+Sleep(1000)
 GUISetState(@SW_SHOW) ;Show GUI
 
 While 1
