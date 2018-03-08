@@ -16,7 +16,7 @@ Aria2Downloader 是一个轻量级多协议和多源下载实用工具。它支�
 
 ## 开发文档
 - [依赖软件](./doc/credits.md)
-- [开发文档](./doc/credits.md)
+- [开发文档](./doc/dev.md)
 
 
 ## 许可证信息
