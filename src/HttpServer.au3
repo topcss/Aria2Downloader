@@ -32,7 +32,7 @@ EndFunc
 
 
 Func HttpServer()
-    
+
     Local $sRootDir = GetArgs()[0]
     Local $sIP = GetArgs()[1]
     Local $iPort = GetArgs()[2]
@@ -102,8 +102,10 @@ Func HttpServer()
                                     Case ".png" ; another common image format
                                         _HTTP_SendFile($aSocket[$x], $sRootDir & $sRequest, "image/png")
 
-                                    Case ".woff", ".woff2"
+                                    Case ".woff"
                                         _HTTP_SendFile($aSocket[$x], $sRootDir & $sRequest, "application/x-font-woff")
+                                    Case ".woff2"
+                                        _HTTP_SendFile($aSocket[$x], $sRootDir & $sRequest, "application/x-font-woff2")
                                     Case ".ttf"
                                         _HTTP_SendFile($aSocket[$x], $sRootDir & $sRequest, "application/x-font-ttf")
 
@@ -125,7 +127,7 @@ Func HttpServer()
 
         Sleep(10)
     WEnd
-    
+
 EndFunc
 
 
@@ -156,7 +158,7 @@ Func _HTTP_SendFile($hSocket, $sFileLoc, $sMimeType, $sReply = "200 OK") ; Sends
 EndFunc
 
 Func _HTTP_SendData($hSocket, $bData, $sMimeType, $sReply = "200 OK")
- 
+
     Local $sServerName = GetArgs()[5]
 
     Local	$sPacket = Binary("HTTP/1.1 " & $sReply & @CRLF & _
